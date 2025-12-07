@@ -12,11 +12,14 @@ const app = express();
 // Configuração de Segurança
 // ============================================
 
-// CORS Restritivo
+// CORS Configuração
+const allowedOrigins = process.env.ALLOWED_ORIGINS;
 const corsOptions = {
-    origin: process.env.ALLOWED_ORIGINS
-        ? process.env.ALLOWED_ORIGINS.split(',')
-        : ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    origin: allowedOrigins === '*'
+        ? true
+        : (allowedOrigins
+            ? allowedOrigins.split(',').map(o => o.trim())
+            : ['http://localhost:3000', 'http://127.0.0.1:3000']),
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
