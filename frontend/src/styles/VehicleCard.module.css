@@ -1,0 +1,772 @@
+/* VehicleCard.module.css - Ultra Premium Card Design System */
+
+:root {
+  --card-radius: 20px;
+  --transition-premium: cubic-bezier(0.43, 0.195, 0.02, 1);
+  --glow-red: rgba(255, 59, 48, 0.4);
+}
+
+/* Legacy Card (keeping for backward compatibility) */
+.card {
+  display: none;
+}
+
+/* NEW Premium Card Container - Much Larger & Luxurious */
+.cardPremium {
+  background: linear-gradient(135deg, #0A0A0A 0%, #000000 100%);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s var(--transition-premium);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  min-height: 460px;
+}
+
+/* Hover State - Dramatic 3D Effect */
+.cardPremium:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.6),
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 4px 12px var(--glow-red),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 59, 48, 0.3);
+}
+
+/* Favorite Button - Floating Heart */
+.favoriteBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s var(--transition-premium);
+  opacity: 0;
+}
+
+.cardPremium:hover .favoriteBtn {
+  opacity: 1;
+}
+
+.favoriteBtn:hover {
+  background: rgba(255, 59, 48, 0.8);
+  border-color: var(--glow-red);
+  transform: scale(1.1);
+}
+
+.favoriteBtn svg {
+  transition: transform 0.3s var(--transition-premium);
+}
+
+.favoriteBtn:active svg {
+  transform: scale(0.8);
+}
+
+/* Share Button */
+.shareBtn {
+  position: absolute;
+  top: 16px;
+  right: 68px;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s var(--transition-premium);
+  opacity: 0;
+}
+
+.cardPremium:hover .shareBtn {
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+
+.shareBtn:hover {
+  background: rgba(0, 122, 255, 0.8);
+  border-color: rgba(0, 122, 255, 0.4);
+  transform: scale(1.1);
+}
+
+/* Premium Badges Container */
+.badgesPremium {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 15;
+}
+
+/* Premium Badge Styles - Animated Glass Effect */
+.badgePremium {
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  backdrop-filter: saturate(180%) blur(30px);
+  -webkit-backdrop-filter: saturate(180%) blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  animation: slideInLeft 0.5s var(--transition-premium);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.badgePremium.new {
+  background: linear-gradient(135deg, rgba(52, 199, 89, 0.95) 0%, rgba(48, 209, 88, 0.95) 100%);
+  color: white;
+  animation: slideInLeft 0.5s var(--transition-premium), pulse 2s infinite;
+}
+
+.badgePremium.year {
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.95) 0%, rgba(10, 132, 255, 0.95) 100%);
+  color: white;
+}
+
+.badgePremium.promo {
+  background: linear-gradient(135deg, rgba(255, 59, 48, 0.95) 0%, rgba(255, 69, 58, 0.95) 100%);
+  color: white;
+  animation: slideInLeft 0.5s var(--transition-premium), pulse 1.5s infinite;
+}
+
+.badgePremium.featured {
+  background: linear-gradient(135deg, rgba(255, 204, 0, 0.95) 0%, rgba(255, 214, 10, 0.95) 100%);
+  color: #000000;
+  font-weight: 800;
+}
+
+.badgeIcon {
+  display: flex;
+  align-items: center;
+}
+
+/* Legacy badges - hidden */
+.badges {
+  display: none;
+}
+.badge {
+  display: none;
+}
+
+/* Premium Image Container - Larger & More Impactful */
+.imageContainerPremium {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #141414 0%, #000000 100%);
+}
+
+/* Premium Image - With Zoom Effect */
+.imagePremium {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--transition-premium), opacity 0.3s ease;
+}
+
+.cardPremium:hover .imagePremium {
+  transform: scale(1.08);
+  opacity: 0.9;
+}
+
+/* Quick View Overlay */
+.quickViewOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s var(--transition-premium);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.cardPremium:hover .quickViewOverlay {
+  opacity: 1;
+}
+
+.quickViewBtn {
+  background: rgba(255, 255, 255, 0.95);
+  color: #000000;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(20px);
+  transition: all 0.3s var(--transition-premium);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.cardPremium:hover .quickViewBtn {
+  transform: translateY(0);
+}
+
+.quickViewBtn:hover {
+  background: #FFFFFF;
+  transform: scale(1.05) translateY(0);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* Premium Image Counter */
+.imageCountPremium {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 12px;
+  border-radius: 20px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 10;
+}
+
+/* Legacy image styles - hidden */
+.imageContainer {
+  display: none;
+}
+.image {
+  display: none;
+}
+.imageCount {
+  display: none;
+}
+
+/* Premium Content Section - More Spacious */
+.contentPremium {
+  padding: 24px;
+  background: linear-gradient(180deg, #0A0A0A 0%, #000000 100%);
+}
+
+/* Premium Header Section */
+.headerPremium {
+  margin-bottom: 16px;
+}
+
+.brandPremium {
+  font-size: 12px;
+  font-weight: 700;
+  color: #FF3B30;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.modelPremium {
+  font-size: 22px;
+  font-weight: 600;
+  color: #FFFFFF;
+  letter-spacing: -0.03em;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Premium Price Section */
+.pricePremium {
+  margin: 20px 0;
+  padding: 16px;
+  background: rgba(255, 59, 48, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 59, 48, 0.1);
+}
+
+.priceLabel {
+  display: block;
+  font-size: 11px;
+  color: #8E8E93;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.priceValue {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  color: #FF3B30;
+  letter-spacing: -0.03em;
+}
+
+/* Premium Specifications */
+.specsPremium {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+}
+
+.specItemPremium {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #C7C7CC;
+}
+
+.specIcon {
+  color: #636366;
+  font-size: 18px;
+}
+
+/* Legacy content styles - hidden */
+.content {
+  display: none;
+}
+.header {
+  display: none;
+}
+.brand {
+  display: none;
+}
+.model {
+  display: none;
+}
+.divider {
+  display: none;
+}
+.price {
+  display: none;
+}
+.specs {
+  display: none;
+}
+.specItem {
+  display: none;
+}
+.specLabel {
+  display: none;
+}
+.specValue {
+  display: none;
+}
+
+/* Premium Action Buttons - Larger & More Prominent */
+.actionsPremium {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.whatsappBtnPremium,
+.detailsBtnPremium {
+  padding: 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s var(--transition-premium);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Premium WhatsApp Button */
+.whatsappBtnPremium {
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.2) 0%, rgba(37, 211, 102, 0.15) 100%);
+  color: #25D366;
+  border: 1px solid rgba(37, 211, 102, 0.4);
+}
+
+.whatsappBtnPremium::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.whatsappBtnPremium:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.whatsappBtnPremium:hover {
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.3) 0%, rgba(37, 211, 102, 0.25) 100%);
+  border-color: #25D366;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+
+/* Premium Details Button */
+.detailsBtnPremium {
+  background: linear-gradient(135deg, #FF3B30 0%, #FF453A 100%);
+  color: #FFFFFF;
+  border: 1px solid #FF3B30;
+}
+
+.detailsBtnPremium::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.detailsBtnPremium:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.detailsBtnPremium:hover {
+  background: linear-gradient(135deg, #FF453A 0%, #FF5449 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 59, 48, 0.4);
+}
+
+/* Legacy action styles - hidden */
+.actions {
+  display: none;
+}
+.whatsappBtn {
+  display: none;
+}
+.detailsBtn {
+  display: none;
+}
+
+/* List View Styles */
+.cardList {
+  display: flex;
+  background: #000000;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.43, 0.195, 0.02, 1);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 4px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.cardList:hover {
+  transform: translateX(4px);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 2px 4px rgba(255, 59, 48, 0.2);
+}
+
+/* List Image Container */
+.listImageContainer {
+  position: relative;
+  width: 280px;
+  min-width: 280px;
+  height: 180px;
+  overflow: hidden;
+  background: #0A0A0A;
+}
+
+.listImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* List Content */
+.listContent {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #0A0A0A 0%, #000000 100%);
+}
+
+/* List Header */
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.listTitle {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8E8E93;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0;
+}
+
+.listTitle span {
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  margin-top: 4px;
+}
+
+.listPrice {
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--red-primary, #FF3B30);
+  letter-spacing: -0.02em;
+}
+
+/* List Specifications */
+.listSpecs {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.spec {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #8E8E93;
+}
+
+.spec svg {
+  color: #636366;
+}
+
+/* List Actions */
+.listActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.listActions .whatsappLink,
+.listActions .detailsLink {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.whatsappLink {
+  background: rgba(37, 211, 102, 0.15);
+  color: #25D366;
+  border: 1px solid rgba(37, 211, 102, 0.3);
+}
+
+.whatsappLink:hover {
+  background: rgba(37, 211, 102, 0.25);
+  border-color: #25D366;
+  transform: scale(1.02);
+}
+
+.detailsLink {
+  background: #FF3B30;
+  color: #FFFFFF;
+  border: 1px solid #FF3B30;
+}
+
+.detailsLink:hover {
+  background: #FF453A;
+  border-color: #FF453A;
+  transform: scale(1.02);
+}
+
+/* Quick Actions - Removed as requested */
+.quickActions {
+  display: none;
+}
+
+/* Action Buttons - Removed as requested */
+.actionBtn {
+  display: none;
+}
+
+/* Responsive Design - Optimized for Premium Cards */
+@media (max-width: 768px) {
+  .cardPremium {
+    min-height: 420px;
+  }
+  
+  .imageContainerPremium {
+    height: 200px;
+  }
+  
+  .contentPremium {
+    padding: 20px;
+  }
+  
+  .modelPremium {
+    font-size: 20px;
+  }
+  
+  .priceValue {
+    font-size: 24px;
+  }
+  
+  .specsPremium {
+    padding: 12px;
+  }
+  
+  .cardList {
+    flex-direction: column;
+  }
+  
+  .listImageContainer {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .listContent {
+    padding: 20px;
+  }
+  
+  .listHeader {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .listSpecs {
+    gap: 16px;
+  }
+  
+  .listActions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .listActions .whatsappLink,
+  .listActions .detailsLink {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardPremium {
+    min-height: 400px;
+  }
+  
+  .imageContainerPremium {
+    height: 180px;
+  }
+  
+  .contentPremium {
+    padding: 16px;
+  }
+  
+  .modelPremium {
+    font-size: 18px;
+  }
+  
+  .priceValue {
+    font-size: 22px;
+  }
+  
+  .pricePremium {
+    padding: 12px;
+    margin: 16px 0;
+  }
+  
+  .specsPremium {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+  }
+  
+  .actionsPremium {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .badgesPremium {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .badgePremium {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+}

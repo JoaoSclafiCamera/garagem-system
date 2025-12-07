@@ -1,0 +1,164 @@
+.galeria-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    }
+    
+    .imagem-principal {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: zoom-in;
+    transition: transform 0.3s;
+    }
+    
+    .miniaturas-container {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow-x: auto;
+    background: rgba(0, 0, 0, 0.6);
+    margin-top: 1rem;
+    border-radius: 8px;
+    }
+    
+    .miniatura {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+    }
+    
+    .miniatura:hover ,
+    .miniatura.ativa {
+    opacity: 1;
+    border-color: var(--primary);
+    transform: scale(1.05);
+    }
+    
+    .controles-galeria {
+    position: absolute;
+    top: 32%;
+    width: 97%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    transform: translateY(-50%);
+    }
+    
+    .controle-setas {
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    }
+    
+    .controle-setas:hover {
+    background: var(--primary);
+    transform: scale(1.1);
+    }
+    
+    .detalhes-container {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 3rem;
+    padding: 3rem 5%;
+    }
+    
+    .informacoes-tecnicas {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--primary);
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+    }
+    
+    .linha-detalhe {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    }
+    
+    .especificacoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    }
+    
+    .botao-whatsapp {
+    background: #25D366;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+    transition: transform 0.3s;
+    width: fit-content;
+    margin: 2rem auto;
+    }
+    
+    .botao-whatsapp:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(37, 211, 102, 0.4);
+    }
+    
+    .historico-box {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+    border-left: 4px solid var(--primary);
+    }
+    
+    .modal-zoom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    cursor: zoom-out;
+    }
+    
+    @media (max-width: 768px) {
+    .detalhes-container {
+    grid-template-columns: 1fr;
+    }
+    
+    .imagem-principal {
+    height: 400px;
+    }
+    
+    .informacoes-tecnicas {
+    position: static;
+    }
+    }

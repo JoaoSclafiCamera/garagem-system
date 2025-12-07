@@ -1,0 +1,107 @@
+.skeleton {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skeleton.grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton.list {
+  display: flex;
+  flex-direction: row;
+}
+
+.image {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton.grid .image {
+  height: 200px;
+  width: 100%;
+}
+
+.skeleton.list .image {
+  width: 280px;
+  height: 180px;
+  flex-shrink: 0;
+}
+
+.content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.title,
+.subtitle,
+.detail,
+.price {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.title {
+  height: 1.5rem;
+  width: 60%;
+}
+
+.subtitle {
+  height: 1rem;
+  width: 40%;
+}
+
+.details {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.detail {
+  height: 1rem;
+  width: 80px;
+}
+
+.price {
+  height: 1.75rem;
+  width: 50%;
+  margin-top: 0.5rem;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .skeleton.list {
+    flex-direction: column;
+  }
+
+  .skeleton.list .image {
+    width: 100%;
+    height: 180px;
+  }
+}

@@ -1,0 +1,98 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  padding: 2rem;
+}
+
+.content {
+  text-align: center;
+  max-width: 500px;
+}
+
+.code {
+  font-size: 8rem;
+  font-weight: 700;
+  color: #ff0000;
+  margin: 0;
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(255, 0, 0, 0.5);
+}
+
+.title {
+  color: #ffffff;
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 1rem 0;
+}
+
+.message {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 2rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.homeBtn,
+.catalogBtn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.homeBtn {
+  background: #ff0000;
+  color: #ffffff;
+}
+
+.homeBtn:hover {
+  background: #cc0000;
+}
+
+.catalogBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.catalogBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.homeBtn:focus-visible,
+.catalogBtn:focus-visible {
+  outline: 2px solid #ff0000;
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .code {
+    font-size: 5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .homeBtn,
+  .catalogBtn {
+    width: 100%;
+    text-align: center;
+  }
+}

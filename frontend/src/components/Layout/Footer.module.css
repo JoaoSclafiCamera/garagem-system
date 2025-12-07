@@ -1,0 +1,96 @@
+.footer {
+  background: #000000;
+  border-top: 2px solid #ff0000;
+  padding: 2rem 0 0;
+  margin-top: auto;
+}
+
+.footerContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem 2rem;
+}
+
+.footerSection h4 {
+  color: #ff0000;
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.footerSection p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.contactLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+.contactLink:hover {
+  color: #ff0000;
+}
+
+.contactLink:focus-visible {
+  outline: 2px solid #ff0000;
+  outline-offset: 2px;
+}
+
+.contactLink svg {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.address {
+  display: flex;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.address svg {
+  font-size: 1.25rem;
+  color: #ff0000;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.address p {
+  margin: 0.25rem 0;
+}
+
+.footerBottom {
+  background: rgba(255, 0, 0, 0.1);
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.footerBottom p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .footerContent {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 0 1rem 1.5rem;
+  }
+
+  .contactLink,
+  .address {
+    justify-content: center;
+  }
+}

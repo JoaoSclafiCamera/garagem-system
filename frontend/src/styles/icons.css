@@ -1,0 +1,444 @@
+/* Professional Icon Styles - Global icon animations and utilities */
+
+/* Base Icon Styles */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  vertical-align: middle;
+}
+
+/* Icon Sizes */
+.icon-xs {
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
+}
+
+.icon-sm {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.icon-md {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.icon-lg {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.icon-xl {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+
+.icon-2xl {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+}
+
+/* Icon Colors - Semantic */
+.icon-primary {
+  color: #dc2626; /* Red theme */
+}
+
+.icon-secondary {
+  color: #666666;
+}
+
+.icon-success {
+  color: #10b981;
+}
+
+.icon-warning {
+  color: #f59e0b;
+}
+
+.icon-error,
+.icon-danger {
+  color: #ef4444;
+}
+
+.icon-info {
+  color: #3b82f6;
+}
+
+.icon-dark {
+  color: #1a1a1a;
+}
+
+.icon-light {
+  color: #ffffff;
+}
+
+.icon-muted {
+  color: #9ca3af;
+}
+
+/* Interactive Icon States */
+.icon-clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.icon-clickable:hover {
+  transform: scale(1.1);
+  color: #dc2626;
+}
+
+.icon-clickable:active {
+  transform: scale(0.95);
+}
+
+/* Icon Animations */
+@keyframes icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes icon-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes icon-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes icon-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes icon-beat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+}
+
+/* Animation Classes */
+.icon-spin {
+  animation: icon-spin 2s linear infinite;
+}
+
+.icon-pulse {
+  animation: icon-pulse 2s ease-in-out infinite;
+}
+
+.icon-bounce {
+  animation: icon-bounce 1s ease-in-out infinite;
+}
+
+.icon-shake {
+  animation: icon-shake 0.5s ease-in-out infinite;
+}
+
+.icon-beat {
+  animation: icon-beat 1s ease-in-out infinite;
+}
+
+/* Loading States */
+.icon-loading {
+  animation: icon-spin 1s linear infinite;
+  color: #dc2626;
+}
+
+/* Hover Effects */
+.icon-hover-spin:hover {
+  animation: icon-spin 0.5s linear;
+}
+
+.icon-hover-pulse:hover {
+  animation: icon-pulse 0.5s ease-in-out;
+}
+
+.icon-hover-bounce:hover {
+  animation: icon-bounce 0.5s ease-in-out;
+}
+
+.icon-hover-shake:hover {
+  animation: icon-shake 0.3s ease-in-out;
+}
+
+.icon-hover-grow:hover {
+  transform: scale(1.2);
+}
+
+.icon-hover-shrink:hover {
+  transform: scale(0.9);
+}
+
+.icon-hover-rotate:hover {
+  transform: rotate(180deg);
+}
+
+.icon-hover-rotate-reverse:hover {
+  transform: rotate(-180deg);
+}
+
+/* Icon Containers */
+.icon-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.icon-button:hover {
+  background: rgba(220, 38, 38, 0.1);
+}
+
+.icon-button:active {
+  transform: scale(0.95);
+}
+
+/* Icon with Badge */
+.icon-with-badge {
+  position: relative;
+  display: inline-block;
+}
+
+.icon-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  background: #dc2626;
+  color: white;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icon Groups */
+.icon-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.icon-group .icon {
+  margin: 0 2px;
+}
+
+/* Status Icons */
+.icon-status-active {
+  color: #10b981;
+  animation: icon-pulse 2s ease-in-out infinite;
+}
+
+.icon-status-inactive {
+  color: #9ca3af;
+  opacity: 0.5;
+}
+
+.icon-status-error {
+  color: #ef4444;
+  animation: icon-shake 0.5s ease-in-out;
+}
+
+.icon-status-warning {
+  color: #f59e0b;
+  animation: icon-pulse 1s ease-in-out infinite;
+}
+
+/* Social Media Icons */
+.icon-whatsapp {
+  color: #25d366;
+}
+
+.icon-whatsapp:hover {
+  color: #128c7e;
+  transform: scale(1.1);
+}
+
+.icon-facebook {
+  color: #1877f2;
+}
+
+.icon-instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Favorite Icon Animation */
+.icon-favorite {
+  color: #ef4444;
+  animation: icon-beat 0.5s ease-in-out;
+}
+
+.icon-favorite-outline {
+  color: #9ca3af;
+  transition: color 0.3s ease;
+}
+
+.icon-favorite-outline:hover {
+  color: #ef4444;
+}
+
+/* Search Icon Effects */
+.icon-search {
+  transition: all 0.3s ease;
+}
+
+.icon-search:hover {
+  transform: scale(1.1) rotate(-10deg);
+}
+
+/* Microphone Icon Effects */
+.icon-microphone.active {
+  color: #dc2626;
+  animation: icon-pulse 1s ease-in-out infinite;
+}
+
+.icon-microphone.listening {
+  color: #dc2626;
+  animation: icon-pulse 0.5s ease-in-out infinite;
+}
+
+/* Filter Icon */
+.icon-filter {
+  transition: all 0.3s ease;
+}
+
+.icon-filter.active {
+  color: #dc2626;
+  transform: rotate(180deg);
+}
+
+/* Navigation Icons */
+.icon-nav {
+  color: #666666;
+  transition: all 0.3s ease;
+}
+
+.icon-nav:hover {
+  color: #dc2626;
+  transform: translateY(-2px);
+}
+
+.icon-nav.active {
+  color: #dc2626;
+}
+
+/* Action Icons */
+.icon-add {
+  color: #10b981;
+}
+
+.icon-edit {
+  color: #3b82f6;
+}
+
+.icon-delete {
+  color: #ef4444;
+}
+
+.icon-save {
+  color: #10b981;
+}
+
+/* Responsive Icon Adjustments */
+@media (max-width: 768px) {
+  .icon-md {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .icon-lg {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .icon {
+    color: #e5e5e5;
+  }
+  
+  .icon-muted {
+    color: #6b7280;
+  }
+  
+  .icon-button:hover {
+    background: rgba(220, 38, 38, 0.2);
+  }
+}
+
+/* Accessibility */
+.icon[aria-hidden="true"] {
+  pointer-events: none;
+}
+
+.icon-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

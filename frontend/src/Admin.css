@@ -1,0 +1,560 @@
+/* ============================================
+   ADMIN PANEL - Styles
+   ============================================ */
+
+:root {
+  --admin-primary: #FF3B30;
+  --admin-bg: #0a0a0a;
+  --admin-card-bg: #141414;
+  --admin-border: rgba(255, 255, 255, 0.1);
+  --admin-text: #ffffff;
+  --admin-text-muted: #888888;
+  --admin-success: #4CAF50;
+  --admin-danger: #f44336;
+  --admin-info: #2196F3;
+}
+
+/* Container Principal */
+.admin-container {
+  padding: 2rem 5%;
+  background: var(--admin-bg);
+  min-height: 100vh;
+  color: var(--admin-text);
+}
+
+/* Header */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--admin-primary);
+}
+
+.admin-header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.botao-logout {
+  background: transparent;
+  color: var(--admin-text);
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--admin-border);
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+.botao-logout:hover {
+  background: var(--admin-primary);
+  border-color: var(--admin-primary);
+}
+
+/* Botao Novo */
+.botao-novo {
+  background: var(--admin-primary);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.botao-novo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(255, 59, 48, 0.4);
+}
+
+/* Grid de Carros */
+.carros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.carro-card {
+  background: var(--admin-card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s;
+  border: 1px solid var(--admin-border);
+}
+
+.carro-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--admin-primary);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.carro-thumbnail {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.carro-info {
+  padding: 1.25rem;
+}
+
+.carro-info h3 {
+  margin: 0 0 0.5rem;
+  color: var(--admin-text);
+  font-size: 1.1rem;
+}
+
+.carro-preco {
+  font-size: 1.25rem;
+  color: var(--admin-success);
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.carro-detalhes {
+  color: var(--admin-text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.botoes-acao {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.botao-editar,
+.botao-excluir {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.botao-editar {
+  background: var(--admin-info);
+  color: white;
+}
+
+.botao-excluir {
+  background: transparent;
+  color: var(--admin-danger);
+  border: 1px solid var(--admin-danger);
+}
+
+.botao-editar:hover {
+  background: #1976D2;
+}
+
+.botao-excluir:hover {
+  background: var(--admin-danger);
+  color: white;
+}
+
+/* ============================================
+   MODAL
+   ============================================ */
+
+.admin-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1000;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.modal-content {
+  background: var(--admin-card-bg);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 700px;
+  position: relative;
+  border: 1px solid var(--admin-border);
+  margin: auto;
+}
+
+.modal-content h2 {
+  margin: 0;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--admin-border);
+  font-size: 1.25rem;
+  color: var(--admin-text);
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 1.75rem;
+  cursor: pointer;
+  color: var(--admin-text-muted);
+  transition: color 0.2s;
+  line-height: 1;
+}
+
+.close-modal:hover {
+  color: var(--admin-primary);
+}
+
+/* ============================================
+   FORMULARIO
+   ============================================ */
+
+.form-admin {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem 2rem;
+}
+
+/* Secoes do Formulario */
+.form-section {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.form-section h3 {
+  color: var(--admin-primary);
+  margin: 0 0 1rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Linhas do Formulario */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-row:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+/* Grupos de Input */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  color: var(--admin-text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--admin-text);
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+/* Date input styling for dark theme */
+.form-group input[type="date"] {
+  color-scheme: dark;
+}
+
+.form-group input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--admin-primary);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.form-group select {
+  cursor: pointer;
+}
+
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* Checkbox */
+.checkbox-group {
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  color: var(--admin-text);
+  font-size: 0.95rem;
+  text-transform: none;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--admin-primary);
+  cursor: pointer;
+}
+
+/* ============================================
+   IMAGENS E FEATURES
+   ============================================ */
+
+.add-item-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.add-item-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--admin-text);
+  font-size: 0.9rem;
+}
+
+.add-item-input:focus {
+  outline: none;
+  border-color: var(--admin-primary);
+}
+
+.botao-adicionar {
+  background: var(--admin-primary);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.botao-adicionar:hover {
+  background: #E53935;
+}
+
+.preview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.preview-item {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.preview-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.remove-preview-btn {
+  background: var(--admin-danger);
+  border: none;
+  color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  transition: all 0.2s;
+}
+
+.remove-preview-btn:hover {
+  background: #C62828;
+  transform: scale(1.1);
+}
+
+.features-grid .preview-item {
+  background: rgba(33, 150, 243, 0.15);
+  border-color: rgba(33, 150, 243, 0.3);
+}
+
+.feature-tag {
+  color: var(--admin-text);
+}
+
+/* ============================================
+   BOTAO SALVAR
+   ============================================ */
+
+.botao-salvar {
+  background: var(--admin-primary);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  transition: all 0.3s;
+}
+
+.botao-salvar:hover:not(:disabled) {
+  background: #E53935;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(255, 59, 48, 0.4);
+}
+
+.botao-salvar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   MENSAGENS
+   ============================================ */
+
+.erro-mensagem,
+.erro-form {
+  background: rgba(244, 67, 54, 0.15);
+  border: 1px solid rgba(244, 67, 54, 0.4);
+  color: #EF5350;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 2rem 0;
+  font-size: 0.9rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: var(--admin-text-muted);
+  font-size: 1rem;
+}
+
+/* ============================================
+   RESPONSIVO
+   ============================================ */
+
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 1rem;
+  }
+
+  .admin-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .admin-modal {
+    padding: 1rem;
+  }
+
+  .modal-content {
+    border-radius: 12px;
+  }
+
+  .modal-content h2 {
+    padding: 1.25rem 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .form-admin {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .form-section {
+    padding: 1rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full-width {
+    grid-column: 1;
+  }
+
+  .carros-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .botao-novo {
+    width: 100%;
+  }
+
+  .add-item-container {
+    flex-direction: column;
+  }
+
+  .botao-adicionar {
+    width: 100%;
+  }
+}
+
+/* Scrollbar do Modal */
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
