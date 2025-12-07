@@ -47,14 +47,17 @@ const loginLimiter = rateLimit({
 });
 
 // ============================================
-// Configuração do Banco de Dados
+// Configuração do Banco de Dados (Connection Pool)
 // ============================================
 const dbConfig = {
     host: process.env.DB_HOST || 'localhost',
     port: process.env.DB_PORT || 3306,
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_NAME || 'garagem'
+    database: process.env.DB_NAME || 'garagem',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 };
 
 // Adiciona SSL se estiver em produção (TiDB Cloud requer SSL)
@@ -62,19 +65,20 @@ if (process.env.NODE_ENV === 'production') {
     dbConfig.ssl = { rejectUnauthorized: true };
 }
 
-const db = mysql.createConnection(dbConfig);
+const db = mysql.createPool(dbConfig);
 
 const SECRET_KEY = process.env.JWT_SECRET || 'TROQUE_ESTA_CHAVE_EM_PRODUCAO_32chars';
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
-// Conectar ao banco de dados
-db.connect(err => {
+// Testar conexão inicial
+db.getConnection((err, connection) => {
     if (err) {
         console.error(`[${new Date().toISOString()}] ERRO: Falha ao conectar ao banco:`, err.message);
         return;
     }
     console.log(`[${new Date().toISOString()}] INFO: Conectado ao MySQL (${NODE_ENV})`);
+    connection.release();
 });
 
 // ============================================
