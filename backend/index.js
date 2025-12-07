@@ -46,12 +46,20 @@ const loginLimiter = rateLimit({
 // ============================================
 // Configuração do Banco de Dados
 // ============================================
-const db = mysql.createConnection({
+const dbConfig = {
     host: process.env.DB_HOST || 'localhost',
+    port: process.env.DB_PORT || 3306,
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
     database: process.env.DB_NAME || 'garagem'
-});
+};
+
+// Adiciona SSL se estiver em produção (TiDB Cloud requer SSL)
+if (process.env.NODE_ENV === 'production') {
+    dbConfig.ssl = { rejectUnauthorized: true };
+}
+
+const db = mysql.createConnection(dbConfig);
 
 const SECRET_KEY = process.env.JWT_SECRET || 'TROQUE_ESTA_CHAVE_EM_PRODUCAO_32chars';
 const PORT = process.env.PORT || 5000;
