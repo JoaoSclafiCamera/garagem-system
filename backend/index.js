@@ -8,6 +8,9 @@ const rateLimit = require('express-rate-limit');
 
 const app = express();
 
+// Trust proxy para funcionar corretamente atrás do Render
+app.set('trust proxy', 1);
+
 // ============================================
 // Configuração de Segurança
 // ============================================

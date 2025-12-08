@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { 
+import {
   FaWhatsapp, FaInstagram, FaFacebook, FaTwitter, FaLinkedin,
   FaMapMarkerAlt, FaClock, FaPhone, FaEnvelope,
   FaChevronDown, FaStar, FaQuoteLeft,
@@ -11,10 +11,12 @@ import {
 import { MdVerified } from 'react-icons/md';
 import styles from './styles/HomePremium.module.css';
 import './Home.css'; // For the modern header styles
+import { getVehicles } from './services/api';
 
 const HomePremium = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [testimonialSlide, setTestimonialSlide] = useState(0);
+  const [featuredVehicles, setFeaturedVehicles] = useState([]);
 
   // Hero slider data
   const heroSlides = [
@@ -35,45 +37,24 @@ const HomePremium = () => {
     }
   ];
 
-  // Featured vehicles data
-  const featuredVehicles = [
-    {
-      id: 1,
-      name: "Mercedes-Benz C300",
-      year: 2023,
-      km: "5.000",
-      price: "R$ 450.000",
-      image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      badge: "Oportunidade"
-    },
-    {
-      id: 2,
-      name: "BMW X5 xDrive",
-      year: 2023,
-      km: "0",
-      price: "R$ 580.000",
-      image: "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      badge: "Novo"
-    },
-    {
-      id: 3,
-      name: "Audi RS3 Sportback",
-      year: 2022,
-      km: "12.000",
-      price: "R$ 380.000",
-      image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      badge: "Destaque"
-    },
-    {
-      id: 4,
-      name: "Porsche 911 Carrera",
-      year: 2023,
-      km: "2.500",
-      price: "R$ 890.000",
-      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      badge: "Exclusivo"
-    }
-  ];
+  // Buscar veiculos do backend
+  useEffect(() => {
+    const fetchVehicles = async () => {
+      try {
+        const data = await getVehicles({ limit: 4 });
+        const badges = ['Destaque', 'Oportunidade', 'Novo', 'Exclusivo'];
+        const vehiclesWithBadges = data.map((v, i) => ({
+          ...v,
+          badge: v.isPromotion ? 'Promoção' : badges[i % badges.length],
+          image: v.images?.[0] || 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80'
+        }));
+        setFeaturedVehicles(vehiclesWithBadges);
+      } catch (error) {
+        console.error('Erro ao buscar veiculos:', error);
+      }
+    };
+    fetchVehicles();
+  }, []);
 
   // Categories data
   const categories = [
@@ -255,7 +236,7 @@ const HomePremium = () => {
             <p className={styles.sectionSubtitle}>Oportunidades imperdíveis selecionadas para você</p>
           </div>
           <div className={styles.vehicleCarousel}>
-            {featuredVehicles.map((vehicle) => (
+            {featuredVehicles.length > 0 ? featuredVehicles.map((vehicle) => (
               <div key={vehicle.id} className={styles.vehicleCard}>
                 <div className={styles.vehicleBadge}>{vehicle.badge}</div>
                 <img src={vehicle.image} alt={vehicle.name} className={styles.vehicleImage} />
@@ -264,15 +245,19 @@ const HomePremium = () => {
                   <div className={styles.vehicleDetails}>
                     <span>{vehicle.year}</span>
                     <span>•</span>
-                    <span>{vehicle.km} km</span>
+                    <span>{Number(vehicle.kms).toLocaleString('pt-BR')} km</span>
                   </div>
-                  <div className={styles.vehiclePrice}>{vehicle.price}</div>
+                  <div className={styles.vehiclePrice}>
+                    R$ {Number(vehicle.price).toLocaleString('pt-BR', { minimumFractionDigits: 0 })}
+                  </div>
                   <Link to={`/detalhes/${vehicle.id}`}>
                     <button className={styles.vehicleButton}>Ver Detalhes</button>
                   </Link>
                 </div>
               </div>
-            ))}
+            )) : (
+              <div className={styles.loading}>Carregando veículos...</div>
+            )}
           </div>
         </div>
       </section>
