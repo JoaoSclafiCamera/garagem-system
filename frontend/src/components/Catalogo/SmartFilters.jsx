@@ -21,14 +21,21 @@ const SmartFilters = ({ vehicles, filters, onFilterChange, onClearFilters, onClo
   const brands = [...new Set(vehicles.map(v => v.brand))].sort();
   const colors = [...new Set(vehicles.map(v => v.color))].sort();
 
-  // Estatísticas dos veículos
-  const stats = {
-    minPrice: Math.min(...vehicles.map(v => v.price)),
-    maxPrice: Math.max(...vehicles.map(v => v.price)),
-    minYear: Math.min(...vehicles.map(v => v.year)),
-    maxYear: Math.max(...vehicles.map(v => v.year)),
-    minKm: Math.min(...vehicles.map(v => v.kms)),
-    maxKm: Math.max(...vehicles.map(v => v.kms))
+  // Estatísticas dos veículos (converter strings para números)
+  const stats = vehicles.length > 0 ? {
+    minPrice: Math.min(...vehicles.map(v => Number(v.price) || 0)),
+    maxPrice: Math.max(...vehicles.map(v => Number(v.price) || 0)),
+    minYear: Math.min(...vehicles.map(v => Number(v.year) || 1990)),
+    maxYear: Math.max(...vehicles.map(v => Number(v.year) || 2025)),
+    minKm: Math.min(...vehicles.map(v => Number(v.kms) || 0)),
+    maxKm: Math.max(...vehicles.map(v => Number(v.kms) || 0))
+  } : {
+    minPrice: 0,
+    maxPrice: 1000000,
+    minYear: 1990,
+    maxYear: 2025,
+    minKm: 0,
+    maxKm: 500000
   };
 
   // Atualizar filtros locais quando os filtros externos mudarem

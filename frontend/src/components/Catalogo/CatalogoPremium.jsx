@@ -17,9 +17,9 @@ const CatalogoPremium = () => {
   const [filters, setFilters] = useState({
     search: '',
     brands: [],
-    priceRange: [0, 500000],
-    yearRange: [2010, 2024],
-    kmRange: [0, 200000],
+    priceRange: [0, 1000000],
+    yearRange: [1990, 2025],
+    kmRange: [0, 500000],
     colors: [],
     sortBy: 'relevance'
   });
@@ -31,17 +31,17 @@ const CatalogoPremium = () => {
     const sorted = [...vehiclesList];
     switch (sortBy) {
       case 'price-asc':
-        return sorted.sort((a, b) => a.price - b.price);
+        return sorted.sort((a, b) => Number(a.price) - Number(b.price));
       case 'price-desc':
-        return sorted.sort((a, b) => b.price - a.price);
+        return sorted.sort((a, b) => Number(b.price) - Number(a.price));
       case 'year-desc':
-        return sorted.sort((a, b) => b.year - a.year);
+        return sorted.sort((a, b) => Number(b.year) - Number(a.year));
       case 'year-asc':
-        return sorted.sort((a, b) => a.year - b.year);
+        return sorted.sort((a, b) => Number(a.year) - Number(b.year));
       case 'km-asc':
-        return sorted.sort((a, b) => a.kms - b.kms);
+        return sorted.sort((a, b) => Number(a.kms) - Number(b.kms));
       case 'km-desc':
-        return sorted.sort((a, b) => b.kms - a.kms);
+        return sorted.sort((a, b) => Number(b.kms) - Number(a.kms));
       case 'relevance':
       default:
         return sorted.sort((a, b) => b.id - a.id);
@@ -83,15 +83,15 @@ const CatalogoPremium = () => {
     }
 
     filtered = filtered.filter(v =>
-      v.price >= filters.priceRange[0] && v.price <= filters.priceRange[1]
+      Number(v.price) >= filters.priceRange[0] && Number(v.price) <= filters.priceRange[1]
     );
 
     filtered = filtered.filter(v =>
-      v.year >= filters.yearRange[0] && v.year <= filters.yearRange[1]
+      Number(v.year) >= filters.yearRange[0] && Number(v.year) <= filters.yearRange[1]
     );
 
     filtered = filtered.filter(v =>
-      v.kms >= filters.kmRange[0] && v.kms <= filters.kmRange[1]
+      Number(v.kms) >= filters.kmRange[0] && Number(v.kms) <= filters.kmRange[1]
     );
 
     if (filters.colors.length > 0) {
@@ -116,9 +116,9 @@ const CatalogoPremium = () => {
     setFilters({
       search: '',
       brands: [],
-      priceRange: [0, 500000],
-      yearRange: [2010, 2024],
-      kmRange: [0, 200000],
+      priceRange: [0, 1000000],
+      yearRange: [1990, 2025],
+      kmRange: [0, 500000],
       colors: [],
       sortBy: 'relevance'
     });
