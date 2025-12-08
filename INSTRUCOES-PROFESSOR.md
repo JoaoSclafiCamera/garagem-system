@@ -5,7 +5,7 @@
 
 ## Acesso ao Sistema
 
-**URL do Sistema:** https://[URL_VERCEL]
+**URL do Sistema:** https://garagem-system-iyg3m7jlx-jgscalficamera-2734s-projects.vercel.app
 
 **Credenciais de Administrador:**
 - Usuario: `admin`
@@ -56,10 +56,10 @@
 | Estilizacao | CSS3 | Estilos customizados |
 | Roteamento | React Router | Navegacao SPA |
 | Backend | Node.js + Express | API REST |
-| Banco de Dados | MySQL | Banco relacional |
+| Banco de Dados | MySQL (TiDB Cloud) | Banco relacional serverless |
 | Autenticacao | JWT | Tokens seguros |
 | Hospedagem Frontend | Vercel | CDN global |
-| Hospedagem Backend | Oracle Cloud | VM Always Free |
+| Hospedagem Backend | Render | Plataforma cloud |
 
 ---
 
@@ -68,15 +68,15 @@
 ```
 ┌─────────────┐     HTTP      ┌─────────────┐     SQL      ┌─────────────┐
 │   Browser   │ ────────────▶ │   Backend   │ ──────────▶  │   MySQL     │
-│   (React)   │ ◀──────────── │  (Node.js)  │ ◀──────────  │  Database   │
+│   (React)   │ ◀──────────── │  (Node.js)  │ ◀──────────  │ (TiDB Cloud)│
 └─────────────┘    JSON       └─────────────┘              └─────────────┘
-     │
-     │ Deploy
-     ▼
-┌─────────────┐
-│   Vercel    │
-│   (CDN)     │
-└─────────────┘
+     │                              │
+     │ Vercel                       │ Render
+     ▼                              ▼
+┌─────────────┐              ┌─────────────┐
+│   Vercel    │              │   Render    │
+│   (CDN)     │              │  (Node.js)  │
+└─────────────┘              └─────────────┘
 ```
 
 ---
@@ -108,7 +108,7 @@
 
 ### Health Check
 
-Acesse: `http://[IP_BACKEND]:5000/health`
+Acesse: https://garagem-system.onrender.com/health
 
 Resposta esperada:
 ```json
@@ -159,12 +159,26 @@ Resposta esperada:
 - Validacao de inputs
 - CORS configurado
 - Queries parametrizadas (prevencao SQL Injection)
+- Conexao SSL com banco de dados
 
 ---
 
-## Contato
+## URLs do Projeto
 
-**Aluno:** [Seu Nome]
-**Curso:** [Nome do Curso]
-**Disciplina:** [Nome da Disciplina]
-**Professor:** [Nome do Professor]
+| Servico | URL |
+|---------|-----|
+| Frontend | https://garagem-system-iyg3m7jlx-jgscalficamera-2734s-projects.vercel.app |
+| Backend API | https://garagem-system.onrender.com |
+| Health Check | https://garagem-system.onrender.com/health |
+| Repositorio | https://github.com/JoaoSclafiCamera/garagem-system |
+
+---
+
+## Hospedagem (100% Gratuita)
+
+| Servico | Plataforma | Plano |
+|---------|------------|-------|
+| Frontend | Vercel | Free |
+| Backend | Render | Free |
+| Banco de Dados | TiDB Cloud | Serverless Free |
+
