@@ -71,8 +71,10 @@ export const verifyToken = async () => {
 // Veículos - Operações Públicas
 // ============================================
 export const getVehicles = async (params = {}) => {
-    const queryString = new URLSearchParams(params).toString();
-    const url = queryString ? `${API_URL}/catalogo?${queryString}` : `${API_URL}/catalogo`;
+    // Buscar todos os veículos por padrão (limite alto)
+    const defaultParams = { limit: 1000, ...params };
+    const queryString = new URLSearchParams(defaultParams).toString();
+    const url = `${API_URL}/catalogo?${queryString}`;
 
     const response = await fetch(url, {
         headers: getHeaders(),
