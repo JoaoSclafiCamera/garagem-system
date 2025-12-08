@@ -203,15 +203,6 @@ const SmartFilters = ({ vehicles, filters, onFilterChange, onClearFilters, onClo
             </div>
             <div className={styles.rangeDisplay}>
               <span>{formatCurrency(localFilters.priceRange[0])}</span>
-              <div className={styles.rangeBar}>
-                <div 
-                  className={styles.rangeProgress}
-                  style={{
-                    left: `${((localFilters.priceRange[0] - stats.minPrice) / (stats.maxPrice - stats.minPrice)) * 100}%`,
-                    right: `${100 - ((localFilters.priceRange[1] - stats.minPrice) / (stats.maxPrice - stats.minPrice)) * 100}%`
-                  }}
-                />
-              </div>
               <span>{formatCurrency(localFilters.priceRange[1])}</span>
             </div>
             
@@ -277,15 +268,6 @@ const SmartFilters = ({ vehicles, filters, onFilterChange, onClearFilters, onClo
             </div>
             <div className={styles.rangeDisplay}>
               <span>{localFilters.yearRange[0]}</span>
-              <div className={styles.rangeBar}>
-                <div 
-                  className={styles.rangeProgress}
-                  style={{
-                    left: `${((localFilters.yearRange[0] - stats.minYear) / (stats.maxYear - stats.minYear)) * 100}%`,
-                    right: `${100 - ((localFilters.yearRange[1] - stats.minYear) / (stats.maxYear - stats.minYear)) * 100}%`
-                  }}
-                />
-              </div>
               <span>{localFilters.yearRange[1]}</span>
             </div>
           </div>
@@ -337,15 +319,6 @@ const SmartFilters = ({ vehicles, filters, onFilterChange, onClearFilters, onClo
             </div>
             <div className={styles.rangeDisplay}>
               <span>{localFilters.kmRange[0].toLocaleString('pt-BR')} km</span>
-              <div className={styles.rangeBar}>
-                <div 
-                  className={styles.rangeProgress}
-                  style={{
-                    left: `${((localFilters.kmRange[0] - stats.minKm) / (stats.maxKm - stats.minKm)) * 100}%`,
-                    right: `${100 - ((localFilters.kmRange[1] - stats.minKm) / (stats.maxKm - stats.minKm)) * 100}%`
-                  }}
-                />
-              </div>
               <span>{localFilters.kmRange[1].toLocaleString('pt-BR')} km</span>
             </div>
             
