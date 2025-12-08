@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { BsGrid3X3GapFill, BsListUl } from 'react-icons/bs';
 import { FaWhatsapp, FaInstagram, FaFacebook } from 'react-icons/fa';
 import VehicleCard from './VehicleCard';
@@ -9,6 +9,9 @@ import styles from '../../styles/CatalogoPremium.module.css';
 import { getVehicles } from '../../services/api';
 
 const CatalogoPremium = () => {
+  const [searchParams] = useSearchParams();
+  const brandFromUrl = searchParams.get('brand');
+
   // Estados
   const [vehicles, setVehicles] = useState([]);
   const [filteredVehicles, setFilteredVehicles] = useState([]);
@@ -16,7 +19,7 @@ const CatalogoPremium = () => {
   const [viewMode, setViewMode] = useState('grid'); // grid, list
   const [filters, setFilters] = useState({
     search: '',
-    brands: [],
+    brands: brandFromUrl ? [brandFromUrl] : [],
     priceRange: [0, 1000000],
     yearRange: [1990, 2025],
     kmRange: [0, 500000],

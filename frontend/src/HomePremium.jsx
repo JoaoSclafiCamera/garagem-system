@@ -17,6 +17,7 @@ const HomePremium = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [testimonialSlide, setTestimonialSlide] = useState(0);
   const [featuredVehicles, setFeaturedVehicles] = useState([]);
+  const [brands, setBrands] = useState([]);
 
   // Hero slider data
   const heroSlides = [
@@ -41,54 +42,35 @@ const HomePremium = () => {
   useEffect(() => {
     const fetchVehicles = async () => {
       try {
-        const data = await getVehicles({ limit: 4 });
+        const data = await getVehicles();
         const badges = ['Destaque', 'Oportunidade', 'Novo', 'Exclusivo'];
-        const vehiclesWithBadges = data.map((v, i) => ({
+        const vehiclesWithBadges = data.slice(0, 4).map((v, i) => ({
           ...v,
           badge: v.isPromotion ? 'Promoção' : badges[i % badges.length],
           image: v.images?.[0] || 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80'
         }));
         setFeaturedVehicles(vehiclesWithBadges);
+
+        // Extrair marcas únicas com contagem e imagem
+        const brandImages = {
+          'Honda': 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80',
+          'Toyota': 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=800&q=80',
+          'Jeep': 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80',
+          'default': 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80'
+        };
+        const uniqueBrands = [...new Set(data.map(v => v.brand))];
+        const brandsWithCount = uniqueBrands.map(brand => ({
+          name: brand,
+          count: data.filter(v => v.brand === brand).length,
+          image: brandImages[brand] || brandImages['default']
+        }));
+        setBrands(brandsWithCount);
       } catch (error) {
         console.error('Erro ao buscar veiculos:', error);
       }
     };
     fetchVehicles();
   }, []);
-
-  // Categories data
-  const categories = [
-    {
-      title: "Esportivos",
-      count: "25 veículos",
-      image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "SUVs Premium",
-      count: "32 veículos",
-      image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "Sedãs Executivos",
-      count: "18 veículos",
-      image: "https://images.unsplash.com/photo-1550355291-bbee04a92027?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "Compactos Premium",
-      count: "15 veículos",
-      image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "Clássicos",
-      count: "8 veículos",
-      image: "https://images.unsplash.com/photo-1583267746897-2cf415887172?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "Elétricos",
-      count: "12 veículos",
-      image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    }
-  ];
 
   // Testimonials data
   const testimonials = [
@@ -262,28 +244,34 @@ const HomePremium = () => {
         </div>
       </section>
 
-      {/* Categories */}
-      <section className={styles.categories}>
-        <div className={styles.categoriesContainer}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Navegue por Categoria</h2>
-            <p className={styles.sectionSubtitle}>Encontre o veículo perfeito para seu estilo</p>
-          </div>
-          <div className={styles.categoriesGrid}>
-            {categories.map((category, index) => (
-              <Link to="/catalogo" key={index} className={styles.categoryCard}>
-                <img src={category.image} alt={category.title} className={styles.categoryImage} />
-                <div className={styles.categoryOverlay}>
-                  <div>
-                    <h3 className={styles.categoryTitle}>{category.title}</h3>
-                    <p className={styles.categoryCount}>{category.count}</p>
+      {/* Categories - Marcas Reais */}
+      {brands.length > 0 && (
+        <section className={styles.categories}>
+          <div className={styles.categoriesContainer}>
+            <div className={styles.sectionHeader}>
+              <h2 className={styles.sectionTitle}>Navegue por Marca</h2>
+              <p className={styles.sectionSubtitle}>Encontre o veículo perfeito para seu estilo</p>
+            </div>
+            <div className={styles.categoriesGrid}>
+              {brands.map((brand, index) => (
+                <Link
+                  to={`/catalogo?brand=${encodeURIComponent(brand.name)}`}
+                  key={index}
+                  className={styles.categoryCard}
+                >
+                  <img src={brand.image} alt={brand.name} className={styles.categoryImage} />
+                  <div className={styles.categoryOverlay}>
+                    <div>
+                      <h3 className={styles.categoryTitle}>{brand.name}</h3>
+                      <p className={styles.categoryCount}>{brand.count} veículo{brand.count !== 1 ? 's' : ''}</p>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* About Section Redesigned */}
       <section className={styles.aboutModern}>
